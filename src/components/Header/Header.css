@@ -1,0 +1,95 @@
+nav {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  /* height: 3.5rem; */
+  position: sticky;
+  top: 0;
+}
+nav .website_name {
+  position: relative;
+  top: -49px;
+  left: 90px;
+  color: var(--col1);
+}
+nav .image {
+  display: "flex";
+}
+nav nav svg,
+nav FontAwesomeIcon {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+svg:hover,
+FontAwesomeIcon:hover {
+  color: var(--col1);
+}
+/* .right-corner {
+  display: flex;
+  width: 70%;
+} */
+nav .s1 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav img {
+  width: 100px;
+}
+nav .searchbar {
+  display: flex;
+  border: none;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  overflow: hidden;
+  padding: 5px;
+  justify-content: space-between;
+  width: 50%;
+  background-color: transparent;
+}
+
+nav .searchbar input {
+  border: none;
+  outline: none;
+  width: 100%;
+}
+nav .searchbar svg {
+  color: var(--col1);
+}
+nav .searchbar button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+nav .s1 .right {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  width: 50%;
+}
+nav .cart,
+nav .wishlist {
+  position: relative;
+  margin: 0px 20px;
+}
+nav .cart .cart-quantity,
+nav .wishlist .wishlist-quantity {
+  background-color: var(--col1);
+  color: white;
+  border-radius: 50%;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: -15px;
+  right: -15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  text-align: center;
+}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function HOME() {
+export default function Home() {
   const [apiData, setData] = useState();
   const getApiData = async () => {
     try {
@@ -17,5 +17,3 @@ function HOME() {
   }, []);
   return <div>Home page</div>;
 }
-
-export default HOME;
