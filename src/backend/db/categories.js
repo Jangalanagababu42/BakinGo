@@ -8,20 +8,26 @@ import { v4 as uuid } from "uuid";
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "fiction",
-    description:
-      "literature in the form of prose, especially novels, that describes imaginary events and people",
+    categoryName: "Black Forest",
+    imageUrl:
+      "https://res.cloudinary.com/dzy0bigtz/image/upload/v1684661457/istockphoto-1276645382-612x612_itydvz.jpg",
   },
   {
     _id: uuid(),
-    categoryName: "non-fiction",
-    description:
-      "Non-fiction is writing that gives information or describes real events, rather than telling a story.",
+    categoryName: "Strawberry",
+    imageUrl:
+      "https://res.cloudinary.com/dzy0bigtz/image/upload/v1684661645/three-strawberries-strawberry-leaf-white-background-114284301_grmb14.jpg",
   },
   {
     _id: uuid(),
-    categoryName: "horror",
-    description:
-      "Meant to cause discomfort and fear for both the character and readers, horror writers often make use of supernatural and paranormal elements in morbid stories that are sometimes a little too realistic.",
+    categoryName: "Red Velvet",
+    imageUrl:
+      "https://res.cloudinary.com/dzy0bigtz/image/upload/v1684662127/EgglessRedVelvetCake2_grande_orpsga.webp",
+  },
+  {
+    _id: uuid(),
+    categoryName: "Butterscotch",
+    imageUrl:
+      "https://res.cloudinary.com/dzy0bigtz/image/upload/v1684662287/34662921_m-e1481140138408_rduauc.jpg",
   },
 ];

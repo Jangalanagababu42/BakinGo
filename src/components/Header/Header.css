@@ -7,6 +7,17 @@ nav {
   position: sticky;
   top: 0;
 }
+.nav-item {
+  color: var(--default-color);
+  display: inline-block;
+  text-decoration: none;
+}
+
+.nav-active {
+  color: var(--col1);
+  font-size: 1rem;
+  font-weight: 600;
+}
 nav .website_name {
   position: relative;
   top: -49px;

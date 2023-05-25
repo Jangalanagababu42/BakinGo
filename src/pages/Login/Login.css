@@ -1,0 +1,72 @@
+.login-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  width: 100%;
+  background: #f7f7f7;
+}
+.login-card {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  padding-inline: 4rem;
+  padding-block-end: 4rem;
+  gap: 1rem;
+}
+h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+.login-input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.login-input label {
+  font-size: 0.8rem;
+}
+.login-input input {
+  padding: 0.5rem 0.7rem;
+  border-radius: 5px;
+  border: 1px solid #9a9a9a;
+}
+
+.login-forgot-details {
+  display: flex;
+  font-size: 0.8rem;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+}
+.remember-me,
+.create-new-account {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.forgot-password {
+  color: #3b82f6;
+}
+.active-button {
+  background-color: #114fb3;
+}
+.card-button2 {
+  color: #fff;
+  text-align: center;
+
+  padding: 0.5rem;
+  width: 100%;
+  border: none;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  /* background-color: #9a9a9a; */
+}

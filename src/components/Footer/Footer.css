@@ -1,0 +1,28 @@
+.footer {
+  background-color: whitesmoke;
+  padding: 1rem 1rem;
+  text-align: center;
+  /* color: white; */
+  border-top-right-radius: 1rem;
+  position: fixed;
+  bottom: 0%;
+  width: 100%;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.footer .footer-header {
+  font-weight: bold;
+  font-size: large;
+}
+.footer .link {
+  color: white;
+}
+
+.footer ul {
+  padding-inline-start: 0px;
+}
+.link2 {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+/* margin-top: 5rem; */

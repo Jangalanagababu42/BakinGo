@@ -1,0 +1,40 @@
+.filters {
+  display: block;
+  height: calc(100vh - 15rem);
+  margin: 1rem;
+  min-width: 14rem;
+  overflow-y: auto;
+
+  position: sticky;
+  top: 0;
+}
+.filter-header {
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 1rem;
+}
+.btn-no-decoration {
+  outline: none;
+  border: none;
+  color: var(--col1);
+  background-color: transparent;
+  cursor: pointer;
+}
+.sort-price,
+.filter-rating,
+.filter-price,
+.filter-items,
+.filter-flavors,
+.filter-stocks {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+
+  row-gap: 0.5rem;
+}
+.small-text {
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: grey;
+}
