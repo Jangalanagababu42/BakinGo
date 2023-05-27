@@ -8,9 +8,11 @@ import Cart from "./pages/Cart/Cart";
 import WishList from "./pages/WishList/WishList";
 import ProductsList from "./pages/Product/ProductsList";
 import Login from "./pages/Login/Login";
-import Profile from "./pages/Profile";
+
 import Signup from "./pages/Signup/Signup";
 import ProductDetails from "./pages/ProductDetail/ProductDetails";
+import { RequiredAuth } from "./components/requiredAuth";
+import Profile from "./pages/Profile/Profile";
 
 function App() {
   return (
@@ -19,13 +21,36 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/mockman" element={<MockAPI />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/wishlist" element={<WishList />} />
+        <Route
+          path="/cart"
+          element={
+            <RequiredAuth>
+              {" "}
+              <Cart />
+            </RequiredAuth>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <RequiredAuth>
+              {" "}
+              <Profile />
+            </RequiredAuth>
+          }
+        />
+        <Route
+          path="/wishlist"
+          element={
+            <RequiredAuth>
+              <WishList />
+            </RequiredAuth>
+          }
+        />
         <Route path="/products" element={<ProductsList />} />
         <Route path="/product/:productId" element={<ProductDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/profile" element={<Profile />} />
       </Routes>
       <Footer />
     </div>

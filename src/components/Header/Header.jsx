@@ -81,7 +81,7 @@ function Header() {
               icon={faUser}
               className="fontawsme"
               size="2xl"
-              onClick={() => navigate("/login")}
+              onClick={() => navigate("/profile")}
             />
           </div>
         </div>

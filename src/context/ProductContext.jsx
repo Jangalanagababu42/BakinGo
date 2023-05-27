@@ -1,6 +1,7 @@
 import { createContext, useEffect, useReducer, useState } from "react";
 import App from "../App";
 import { reducer } from "../reducers/reducer";
+import { useNavigate } from "react-router-dom";
 
 export const ProductContext = createContext();
 
@@ -8,6 +9,7 @@ export default function ProductProvider({ children }) {
   const [categoriesData, setCategoriesData] = useState([]);
   const [renderedProducts, showRenderedProducts] = useState([]);
   const [input, setInput] = useState("");
+  const navigate = useNavigate();
   const getData = async () => {
     try {
       const response = await fetch("api/products");
@@ -37,7 +39,7 @@ export default function ProductProvider({ children }) {
   const handleSearchInput = () => {
     console.log(input);
     dispatch({ type: "SEARCHINPUT", payload: input });
-
+    navigate("/products");
     console.log("logged");
   };
   const handleSortByPrice = (e) => {
