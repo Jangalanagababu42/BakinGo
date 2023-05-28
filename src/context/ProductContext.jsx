@@ -86,9 +86,9 @@ export default function ProductProvider({ children }) {
     state.priceSortBy === ""
       ? searchedProducts
       : state.priceSortBy === "LTH"
-      ? searchedProducts.sort((a, b) => a.price - b.price)
+      ? [...searchedProducts].sort((a, b) => a.price - b.price)
       : state.priceSortBy === "HTL"
-      ? searchedProducts.sort((a, b) => b.price - a.price)
+      ? [...searchedProducts].sort((a, b) => b.price - a.price)
       : searchedProducts;
 
   const filterProductsbyRating =
