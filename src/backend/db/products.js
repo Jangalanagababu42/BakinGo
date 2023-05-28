@@ -25,7 +25,7 @@ export const products = [
     title: "Black N White Chocolate Cake",
     imageUrl:
       "https://res.cloudinary.com/dzy0bigtz/image/upload/v1684659264/sq-black-and-white-blackforest-cake-cake2279blac-A_4_qbuofg.avif",
-    rating: "4.9",
+    rating: "3.9",
     totalRatings: 45,
     price: 599,
     categoryName: "Black Forest",
@@ -39,7 +39,7 @@ export const products = [
     title: "Exotic Layer Black Forest Cake",
     imageUrl:
       "https://res.cloudinary.com/dzy0bigtz/image/upload/v1684659626/squ-choco-black-forest-cake-cake888blac-A_a8nu5a.avif",
-    rating: "4.3",
+    rating: "2.3",
     totalRatings: 32,
     price: 699,
     categoryName: "Black Forest",
@@ -95,7 +95,7 @@ export const products = [
     title: "Pink Hearty Rose Strawberry Cake  ",
     imageUrl:
       "https://res.cloudinary.com/dzy0bigtz/image/upload/v1684660066/sq-pink-hearty-rose-strawberry-cake-cake2536stra-A_1_rbo4mv.avif",
-    rating: "4.7",
+    rating: "2.7",
     totalRatings: 14,
     price: 1699,
     categoryName: "Strawberry",
@@ -150,7 +150,7 @@ export const products = [
     title: "Red Velvet Coffee Cake  ",
     imageUrl:
       "https://res.cloudinary.com/dzy0bigtz/image/upload/v1684660517/sq-red-velvet-choco-coffee-cake0040rchc-AA_bfyqbc.avif",
-    rating: "5",
+    rating: "3.5",
     totalRatings: 100,
     price: 699,
     categoryName: "Red Velvet",
@@ -219,7 +219,7 @@ export const products = [
     title: "Round Shape Butterscotch Cake  ",
     imageUrl:
       "https://res.cloudinary.com/dzy0bigtz/image/upload/v1684661011/sq-butterscotch-cake0003butt-AA_o3rcbk.avif",
-    rating: "4.3",
+    rating: "2.3",
     totalRatings: 23,
     price: 499,
     categoryName: "Butterscotch",
@@ -247,7 +247,7 @@ export const products = [
     title: "Butterscotch Cake With Chocolate Hints  ",
     imageUrl:
       "https://res.cloudinary.com/dzy0bigtz/image/upload/v1684661232/sq-round-shaped-butterscotch-cake-1-cake0617butt-A_0_pbxaju.avif",
-    rating: "4.0",
+    rating: "4.5",
     totalRatings: 33,
     price: 499,
     categoryName: "Butterscotch",
@@ -275,7 +275,7 @@ export const products = [
     title: "Delicious Pineapple Cream Cake  ",
     imageUrl:
       "https://res.cloudinary.com/dzy0bigtz/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1684904733/delicious-pineapple-cream-cake-half-kg_1_xcdxy5.jpg",
-    rating: "4.4",
+    rating: "3.4",
     totalRatings: 22,
     price: 599,
     categoryName: "Pineapple",
@@ -289,7 +289,7 @@ export const products = [
     title: "Chocolate Overload Gift Box",
     imageUrl:
       "https://res.cloudinary.com/dzy0bigtz/image/upload/v1684901837/chocolate-overload-gift-box_1_l00sqs.webp",
-    rating: "4.4",
+    rating: "2.4",
     totalRatings: 22,
     price: 1499,
     isOutOfStock: false,

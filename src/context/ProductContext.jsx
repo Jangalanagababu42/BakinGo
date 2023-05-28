@@ -93,11 +93,11 @@ export default function ProductProvider({ children }) {
 
   const filterProductsbyRating =
     state.ratingSortBy === "4andabove"
-      ? sortedProductsByPrice.filter(({ rating }) => Number(rating) > 4.0)
+      ? [...sortedProductsByPrice].filter(({ rating }) => Number(rating) > 4.0)
       : state.ratingSortBy === "3andabove"
-      ? sortedProductsByPrice.filter(({ rating }) => Number(rating) > 3.0)
+      ? [...sortedProductsByPrice].filter(({ rating }) => Number(rating) > 3.0)
       : state.ratingSortBy === "2andabove"
-      ? sortedProductsByPrice.filter(({ rating }) => Number(rating) > 2.0)
+      ? [...sortedProductsByPrice].filter(({ rating }) => Number(rating) > 2.0)
       : sortedProductsByPrice;
 
   const filterProductsByPricerange =
