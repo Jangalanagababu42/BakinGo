@@ -8,9 +8,11 @@ import {
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
 import { ProductContext } from "../../context/ProductContext";
+import { ApiContext } from "../../context/ApiContext";
 
 function ProductCard() {
   const { filterProductsByStocks } = useContext(ProductContext);
+  const { addProductsToCart, addProductsToWishlist } = useContext(ApiContext);
 
   return (
     <div className="product-cards">
@@ -33,8 +35,9 @@ function ProductCard() {
                 icon={faHeart}
                 className="svg-inline--fa fa-heart card-icon wishlist-icon"
                 size="2xl"
-
-                //   onClick={}
+                onClick={() => {
+                  addProductsToWishlist(product);
+                }}
               />
             </div>
             <div className="card-header">{product.title}</div>
@@ -60,6 +63,9 @@ function ProductCard() {
               <button
                 className="btn btn-outline-primary card-button"
                 style={{ border: "2px solid" }}
+                onClick={() => {
+                  addProductsToCart(product);
+                }}
               >
                 Add To Cart
               </button>

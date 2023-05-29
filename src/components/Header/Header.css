@@ -3,11 +3,14 @@ nav {
   flex-direction: column;
   padding: 10px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-  /* height: 3.5rem; */
+  height: 4.5rem;
   position: sticky;
   top: 0;
   background-color: white;
   z-index: 100;
+}
+.title {
+  text-decoration: none;
 }
 .nav-item {
   color: var(--default-color);

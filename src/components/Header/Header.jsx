@@ -10,11 +10,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Header.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ProductContext } from "../../context/ProductContext";
+import { ApiContext } from "../../context/ApiContext";
 
 function Header() {
-  const [cartQuantity, setCartQuantity] = useState(0);
-  const [wishlistQuantity, setWishQuantity] = useState(0);
   const { setInput, handleSearchInput } = useContext(ProductContext);
+  const {
+    productState: { cart, wishlist },
+  } = useContext(ApiContext);
   const navigate = useNavigate();
   return (
     <nav>
@@ -23,7 +25,7 @@ function Header() {
           <Link to="/">
             <img src={cake_icon} alt="cakeicon" className="cake logo" />
           </Link>
-          <Link to="/">
+          <Link to="/" className="title">
             <h1 className="website_name">Bakin GO</h1>{" "}
           </Link>
         </div>
@@ -58,7 +60,7 @@ function Header() {
           </div>
           {/* <div className="right-corner"> */}
           <div className="wishlist">
-            <span className="wishlist-quantity">{wishlistQuantity}</span>
+            <span className="wishlist-quantity">{wishlist.length}</span>
             <FontAwesomeIcon
               icon={faHeart}
               className="fontawsme"
@@ -67,7 +69,7 @@ function Header() {
             />
           </div>
           <div className="cart">
-            <span className="cart-quantity">{cartQuantity}</span>
+            <span className="cart-quantity">{cart.length}</span>
             <FontAwesomeIcon
               icon={faCartShopping}
               fade

@@ -12,9 +12,11 @@ import React, { useContext } from "react";
 import "./ProductDetails.css";
 import { ProductContext } from "../../context/ProductContext";
 import { useParams } from "react-router-dom";
+import { ApiContext } from "../../context/ApiContext";
 
 function ProductDetails() {
   const { renderedProducts } = useContext(ProductContext);
+  const { addProductsToCart, addProductsToWishlist } = useContext(ApiContext);
   console.log(renderedProducts);
   const { productId } = useParams();
   console.log(productId, "pid");
@@ -56,10 +58,20 @@ function ProductDetails() {
               <div className="color-success">Inclusive of all taxes</div>
             </div>
             <div className="product-buttons">
-              <button className="btn btn-primary product-btn">
+              <button
+                className="btn btn-primary product-btn"
+                onClick={() => {
+                  addProductsToCart(item);
+                }}
+              >
                 ADD TO CART
               </button>
-              <button className="btn product-btn btn-outline-default">
+              <button
+                className="btn product-btn btn-outline-default"
+                onClick={() => {
+                  addProductsToWishlist(item);
+                }}
+              >
                 WISHLIST
               </button>
             </div>

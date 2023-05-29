@@ -13,18 +13,7 @@ function Footer() {
           Jangala Nagababu{" "}
         </div>
         <ul class="social-links list-non-bullet">
-          <li class="list-item-inline">
-            <a
-              class="link2"
-              href="https://github.com/Jangalanagababu42"
-              target="_blank"
-            >
-              <FontAwesomeIcon
-                icon={["fab", "github"]}
-                className="footer-icon-style"
-              ></FontAwesomeIcon>
-            </a>
-          </li>
+          <li class="list-item-inline"></li>
           {/* <li class="list-item-inline"><a class="link2" href="https://www.linkedin.com/in/jangala-nagababu-0552181a4
                 " target="_blank"><img class="image" src="./img/linkedin.gif" alt="linkedin" ></a></li>
             <li class="list-item-inline"><a class="link2" href="https://twitter.com/Jangalanagabab2" target="_blank"><img  class="image" src="./img/twitter.gif" alt="twitter"></a></li> */}

@@ -2,6 +2,7 @@ import { createContext, useReducer } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { authReducer } from "../reducers/authReducer";
+
 export const AuthContext = createContext("");
 
 export default function AuthProvider({ children }) {
