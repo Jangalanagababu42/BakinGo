@@ -55,11 +55,12 @@ export default function AuthProvider({ children }) {
         data: { createdUser, encodedToken },
       } = response;
       if (status === 201) {
-        localStorage.setItem("token", encodedToken);
-        localStorage.setItem("user", createdUser);
+        // localStorage.setItem("token", encodedToken);
+        // localStorage.setItem("user", createdUser);
         authDispatch({ type: "TOKEN", payload: encodedToken });
         authDispatch({ type: "USER", payload: createdUser });
-        navigate("/profile");
+        navigate("/login");
+        // navigate("/profile/address");
       }
     } catch (error) {
       console.log(error);
