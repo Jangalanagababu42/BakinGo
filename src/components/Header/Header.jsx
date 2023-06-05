@@ -60,7 +60,9 @@ function Header() {
           </div>
           {/* <div className="right-corner"> */}
           <div className="wishlist">
-            <span className="wishlist-quantity">{wishlist.length}</span>
+            {wishlist.length > 0 && (
+              <span className="wishlist-quantity">{wishlist.length}</span>
+            )}
             <FontAwesomeIcon
               icon={faHeart}
               className="fontawsme"
@@ -69,7 +71,9 @@ function Header() {
             />
           </div>
           <div className="cart">
-            <span className="cart-quantity">{cart.length}</span>
+            {cart.length > 0 && (
+              <span className="cart-quantity">{cart.length}</span>
+            )}
             <FontAwesomeIcon
               icon={faCartShopping}
               fade
@@ -83,7 +87,7 @@ function Header() {
               icon={faUser}
               className="fontawsme"
               size="2xl"
-              onClick={() => navigate("/profile")}
+              onClick={() => navigate("/profile/details")}
             />
           </div>
         </div>

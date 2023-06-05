@@ -18,6 +18,11 @@
   position: relative;
 }
 
+.cart-button-product {
+  color: aliceblue;
+  background-color: var(--col1);
+}
+
 .card-img-container {
   height: 12rem;
   position: relative;
@@ -37,6 +42,9 @@
   right: 2px;
   top: 2px;
   color: grey;
+}
+.filled-wishlist-icon {
+  color: var(--col1);
 }
 .card-header {
   color: var(--default-color);

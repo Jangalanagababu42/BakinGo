@@ -37,10 +37,8 @@ export default function ProductProvider({ children }) {
   };
 
   const handleSearchInput = () => {
-    console.log(input);
     dispatch({ type: "SEARCHINPUT", payload: input });
     navigate("/products");
-    console.log("logged");
   };
   const handleSortByPrice = (e) => {
     dispatch({ type: "SORTBYPRICE", payload: e.target.value });
@@ -65,22 +63,13 @@ export default function ProductProvider({ children }) {
   };
 
   const [state, dispatch] = useReducer(reducer, initialTodos);
-  console.log(state.searchInput, "state.searchInput");
-  console.log(state.dataToDisplay, "state.dataToDisplay");
+
   const searchedProducts =
     state.searchInput.length > 0
       ? renderedProducts.filter((product) =>
           product.title.toLowerCase().includes(state.searchInput.toLowerCase())
         )
       : renderedProducts;
-  console.log(searchedProducts, "searchedProducts");
-
-  // const sortedProductsByPrice =
-  //   state.priceSortBy === "LTH"
-  //     ? searchedProducts.sort((a, b) => a.price - b.price)
-  //     : state.priceSortBy === "HTL"
-  //     ? searchedProducts.sort((a, b) => b.price - a.price)
-  //     : searchedProducts;
 
   const sortedProductsByPrice =
     state.priceSortBy === ""
@@ -188,7 +177,9 @@ export default function ProductProvider({ children }) {
     ? filterProductsByFlavorType.filter(({ isOutOfStock }) => !isOutOfStock)
     : filterProductsByFlavorType;
 
-  console.log(filterProductsByPricerange, "filterProductsByPricerange");
+  const getOriginalPrice = (price, offerPercentage) =>
+    Math.round(Number(price) + (Number(offerPercentage) / 100) * Number(price));
+
   return (
     <ProductContext.Provider
       value={{
@@ -206,9 +197,9 @@ export default function ProductProvider({ children }) {
         handleByStock,
         handleByCLEAR,
         filterProductsByStocks,
+        getOriginalPrice,
       }}
     >
-      {console.log(renderedProducts)}
       <App />
     </ProductContext.Provider>
   );

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "./ProductCard.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeart,
@@ -11,8 +11,11 @@ import { ProductContext } from "../../context/ProductContext";
 import { ApiContext } from "../../context/ApiContext";
 
 function ProductCard() {
-  const { filterProductsByStocks } = useContext(ProductContext);
-  const { addProductsToCart, addProductsToWishlist } = useContext(ApiContext);
+  const { filterProductsByStocks, getOriginalPrice } =
+    useContext(ProductContext);
+  const { addProductsToCart, addProductsToWishlist, isinCart, isWishlisted } =
+    useContext(ApiContext);
+  const navigate = useNavigate();
 
   return (
     <div className="product-cards">
@@ -33,7 +36,11 @@ function ProductCard() {
               )}
               <FontAwesomeIcon
                 icon={faHeart}
-                className="svg-inline--fa fa-heart card-icon wishlist-icon"
+                className={`svg-inline--fa fa-heart card-icon ${
+                  isWishlisted(product)
+                    ? "filled-wishlist-icon"
+                    : "wishlist-icon"
+                } `}
                 size="2xl"
                 onClick={() => {
                   addProductsToWishlist(product);
@@ -46,7 +53,7 @@ function ProductCard() {
               {product.price}
               <span className="strikethrough card-title">
                 <FontAwesomeIcon icon={faIndianRupeeSign} />
-                60
+                {getOriginalPrice(product.price, product.offerPercentage)}
               </span>
               <span className="card-title offer">
                 {product.offerPercentage}%OFF
@@ -59,7 +66,9 @@ function ProductCard() {
               </span>
               <span>{product.totalRatings}|reviews</span>
             </div>
-            <div className="card-buttons product-card-buttons">
+          </Link>
+          <div className="card-buttons product-card-buttons">
+            {!isinCart(product) ? (
               <button
                 className="btn btn-outline-primary card-button"
                 style={{ border: "2px solid" }}
@@ -69,8 +78,18 @@ function ProductCard() {
               >
                 Add To Cart
               </button>
-            </div>
-          </Link>
+            ) : (
+              <button
+                className="btn cart-button-product card-button"
+                style={{ border: "2px solid" }}
+                onClick={() => {
+                  navigate("/cart");
+                }}
+              >
+                Go To Cart
+              </button>
+            )}
+          </div>
         </div>
       ))}
     </div>

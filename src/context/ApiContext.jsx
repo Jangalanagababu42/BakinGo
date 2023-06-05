@@ -18,7 +18,22 @@ export const ApiContext = createContext("");
 
 export default function ApiProvider({ children }) {
   const { authState } = useContext(AuthContext);
-  const initialProductState = { cart: [], wishlist: [] };
+  const initialProductState = {
+    cart: [],
+    wishlist: [],
+    addressList: [
+      {
+        address: "house no:10/42, dammapeta",
+        alternatemobile: 4321321321,
+        city: "Bhadradri Kothagudem",
+        id: "23cdd-23e234ed-234edfr",
+        mobile: 1231231234,
+        name: "John Wick",
+        pincode: "412231",
+        state: "Telangana",
+      },
+    ],
+  };
   const [productState, productDispatch] = useReducer(
     productReducer,
     initialProductState
@@ -148,15 +163,38 @@ export default function ApiProvider({ children }) {
     }
   };
 
+  const isinCart = (product) => {
+    let filteredProduct = productState.cart.filter(
+      (cartProduct) => cartProduct.id === product.id
+    );
+    if (filteredProduct.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  const isWishlisted = (product) => {
+    let filteredProduct = productState.wishlist.filter(
+      (wishlistProduct) => wishlistProduct.id === product.id
+    );
+    if (filteredProduct.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   return (
     <ApiContext.Provider
       value={{
         addProductsToCart,
         productState,
+        productDispatch,
         deleteProductsFromCart,
         updateProductQuantityInCart,
         addProductsToWishlist,
         deleteProductsFromWishlist,
+        isinCart,
+        isWishlisted,
       }}
     >
       {children}

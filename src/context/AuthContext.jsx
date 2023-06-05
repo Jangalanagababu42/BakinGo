@@ -20,7 +20,7 @@ export default function AuthProvider({ children }) {
           email: loginData.email,
           password: loginData.password,
         });
-        console.log(response);
+        console.log(response, "response");
         if (response.status === 200) {
           const {
             data: { encodedToken, foundUser },
@@ -49,6 +49,7 @@ export default function AuthProvider({ children }) {
         email: userSignUpDetails.email,
         password: userSignUpDetails.password,
       });
+      console.log(response, "res");
       const {
         status,
         data: { createdUser, encodedToken },
