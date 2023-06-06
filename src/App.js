@@ -1,4 +1,6 @@
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 import "./App.css";
 import MockAPI from "./components/Mockman";
 import Home from "./pages/Home/Home";
@@ -21,6 +23,7 @@ function App() {
   return (
     <div className="App pagewrapper ">
       <Header />
+      <ToastContainer position="bottom-right" autoClose={800} draggable />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/mockman" element={<MockAPI />} />

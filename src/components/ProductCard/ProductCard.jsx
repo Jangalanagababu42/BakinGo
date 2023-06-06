@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { ProductContext } from "../../context/ProductContext";
 import { ApiContext } from "../../context/ApiContext";
+import { toast } from "react-toastify";
 
 function ProductCard() {
   const { filterProductsByStocks, getOriginalPrice } =
@@ -74,6 +75,7 @@ function ProductCard() {
                 style={{ border: "2px solid" }}
                 onClick={() => {
                   addProductsToCart(product);
+                  toast.success("Added To Cart");
                 }}
               >
                 Add To Cart

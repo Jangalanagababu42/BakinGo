@@ -38,6 +38,7 @@ function Signup() {
                   firstName: e.target.value,
                 });
               }}
+              required
             ></input>
           </div>
           <div className="signup-input">
@@ -54,6 +55,7 @@ function Signup() {
                   lastname: e.target.value,
                 });
               }}
+              required
             ></input>
           </div>
           <div className="signup-input">
@@ -70,6 +72,7 @@ function Signup() {
                   email: e.target.value,
                 });
               }}
+              required
             ></input>
           </div>
           <div className="signup-input">
@@ -86,11 +89,12 @@ function Signup() {
                   password: e.target.value,
                 });
               }}
+              required
             ></input>
           </div>
           <div className="signup-forgot-details">
             <div className="remember-me">
-              <input type="checkbox"></input>
+              <input type="checkbox" required></input>
               <label>I accept all Terms and Conditions</label>
             </div>
           </div>

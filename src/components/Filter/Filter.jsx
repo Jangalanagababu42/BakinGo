@@ -220,6 +220,7 @@ function Filter() {
               id="Butterscotch"
               className="small-text"
               value="Butterscotch"
+              checked={state.FlavourTypeCheckbox.Butterscotch}
               onClick={(e) => {
                 handleFlavorType(e);
               }}

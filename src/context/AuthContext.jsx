@@ -2,6 +2,7 @@ import { createContext, useReducer } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { authReducer } from "../reducers/authReducer";
+import { toast } from "react-toastify";
 
 export const AuthContext = createContext("");
 
@@ -34,6 +35,7 @@ export default function AuthProvider({ children }) {
               ? location?.state?.from?.pathname
               : "/"
           );
+          toast.success("Loggeed In Succesful");
         }
       } catch (error) {
         console.log(error);
@@ -59,8 +61,9 @@ export default function AuthProvider({ children }) {
         // localStorage.setItem("user", createdUser);
         authDispatch({ type: "TOKEN", payload: encodedToken });
         authDispatch({ type: "USER", payload: createdUser });
-        navigate("/login");
-        // navigate("/profile/address");
+        // navigate("/login");
+        navigate("/profile/details");
+        toast.success("Signed In Succesful");
       }
     } catch (error) {
       console.log(error);
@@ -73,6 +76,7 @@ export default function AuthProvider({ children }) {
     authDispatch({ type: "TOKEN", payload: null });
     authDispatch({ type: "USER", payload: null });
     navigate("/login");
+    toast.info("LoggedOut ");
   };
   return (
     <AuthContext.Provider

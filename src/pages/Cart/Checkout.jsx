@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
+import { toast } from "react-toastify";
 import { ApiContext } from "../../context/ApiContext";
 import CartPriceTable from "./CartPriceTable";
 import AddressForm from "../Profile/Address/AddressForm/AddressForm";
-import { AuthContext } from "../../context/AuthContext";
 
 function Checkout() {
   const {
@@ -26,6 +26,7 @@ function Checkout() {
     e.preventDefault();
     setOrderPlaced(true);
     clearTotalCart();
+    toast.success("Order Placed");
   };
   return (
     <>

@@ -12,6 +12,12 @@ function Login() {
   function handleLogData() {
     LoginHandler(loginData);
   }
+  function handleGuestLogData() {
+    setLoginData({
+      email: "adarshbalika@gmail.com",
+      password: "adarshbalika",
+    });
+  }
 
   return (
     <>
@@ -28,6 +34,7 @@ function Login() {
               onChange={(e) =>
                 setLoginData((prev) => ({ ...prev, email: e.target.value }))
               }
+              required
             ></input>
           </div>
           <div className="login-input">
@@ -40,6 +47,7 @@ function Login() {
               onChange={(e) =>
                 setLoginData((prev) => ({ ...prev, password: e.target.value }))
               }
+              required
             ></input>
           </div>
           <div className="login-forgot-details">
@@ -56,6 +64,14 @@ function Login() {
             }}
           >
             Login
+          </button>
+          <button
+            className="card-button2 active-button"
+            onClick={() => {
+              handleGuestLogData();
+            }}
+          >
+            Login as Guest
           </button>
           <a href="/signup" className="create-new-account">
             Create New Account
