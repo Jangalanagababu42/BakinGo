@@ -98,8 +98,10 @@ export default function ApiProvider({ children }) {
     e.preventDefault();
     setDisable(true);
     try {
-      if (!authState?.token) navigate("/login");
-      else {
+      if (!authState?.token) {
+        navigate("/login");
+        toast.info("Please Login ");
+      } else {
         // const response = isWishlisted(product)
         //   ? await deleteProductsFromWishlist(product._id)
         //   : await addProductsToWishlist(product);

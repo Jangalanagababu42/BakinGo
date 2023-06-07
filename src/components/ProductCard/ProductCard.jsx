@@ -83,13 +83,20 @@ function ProductCard() {
             </div>
           </Link>
           <div className="card-buttons product-card-buttons">
-            {!isinCart(product) ? (
+            {product.isOutOfStock ? (
+              <button
+                className="btn btn-outline-primary card-button"
+                style={{ border: "2px solid" }}
+                disabled={true}
+              >
+                OUT OF STOCK
+              </button>
+            ) : !isinCart(product) ? (
               <button
                 className="btn btn-outline-primary card-button"
                 style={{ border: "2px solid" }}
                 onClick={(e) => {
                   addProductsToCart(e, product, setCartLoader);
-                  toast.success("Added To Cart");
                 }}
               >
                 Add To Cart

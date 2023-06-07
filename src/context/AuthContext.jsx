@@ -19,8 +19,8 @@ export default function AuthProvider({ children }) {
   const [authState, authDispatch] = useReducer(authReducer, initialAuthState);
   const LoginHandler = async (loginData) => {
     console.log(loginData, "logindata");
-    if (loginData.email && loginData.password !== "") {
-      try {
+    try {
+      if (loginData.email && loginData.password !== "") {
         const response = await axios.post(`/api/auth/login`, {
           email: loginData.email,
           password: loginData.password,
@@ -43,9 +43,11 @@ export default function AuthProvider({ children }) {
           );
           toast.success("Loggeed In Succesful");
         }
-      } catch (error) {
+      } else {
         toast.error("Invalid credentials");
       }
+    } catch (error) {
+      toast.error("Invalid credentials");
     }
   };
 
