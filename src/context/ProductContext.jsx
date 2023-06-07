@@ -179,7 +179,11 @@ export default function ProductProvider({ children }) {
 
   const getOriginalPrice = (price, offerPercentage) =>
     Math.round(Number(price) + (Number(offerPercentage) / 100) * Number(price));
+  const getTotalPrice = (cart) => {
+    let price = cart.reduce((prev, curr) => prev + curr.qty * curr.price, 0);
 
+    return price;
+  };
   return (
     <ProductContext.Provider
       value={{
@@ -198,6 +202,7 @@ export default function ProductProvider({ children }) {
         handleByCLEAR,
         filterProductsByStocks,
         getOriginalPrice,
+        getTotalPrice,
       }}
     >
       <App />

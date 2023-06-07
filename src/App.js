@@ -18,6 +18,7 @@ import Profile from "./pages/Profile/Profile";
 import Details from "./pages/Profile/Details/Details.jsx";
 import Address from "./pages/Profile/Address/Address.jsx";
 import Checkout from "./pages/Cart/Checkout";
+import Orders from "./pages/Profile/Orders/Orders";
 
 function App() {
   return (
@@ -60,6 +61,7 @@ function App() {
         >
           <Route path="details" element={<Details />} />
           <Route path="address" element={<Address />} />
+          <Route path="orders" element={<Orders />} />
         </Route>
       </Routes>
       {/* <Footer /> */}

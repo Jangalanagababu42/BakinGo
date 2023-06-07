@@ -19,6 +19,7 @@ export const products = [
     offerPercentage: 5,
     isBestSeller: true,
     itemType: "cake",
+    delivery_time: 6,
   },
   {
     _id: uuid(),
@@ -33,6 +34,7 @@ export const products = [
     offerPercentage: 5,
     isBestSeller: false,
     itemType: "cake",
+    delivery_time: 6,
   },
   {
     _id: uuid(),
@@ -47,6 +49,7 @@ export const products = [
     offerPercentage: 5,
     isBestSeller: false,
     itemType: "cake",
+    delivery_time: 5,
   },
   {
     _id: uuid(),
@@ -61,6 +64,7 @@ export const products = [
     offerPercentage: 10,
     isBestSeller: false,
     itemType: "cake",
+    delivery_time: 6,
   },
   {
     _id: uuid(),
@@ -75,6 +79,7 @@ export const products = [
     offerPercentage: 10,
     isBestSeller: false,
     itemType: "chocolates",
+    delivery_time: 5,
   },
   {
     _id: uuid(),
@@ -89,6 +94,7 @@ export const products = [
     offerPercentage: 15,
     isBestSeller: true,
     itemType: "cake",
+    delivery_time: 4,
   },
   {
     _id: uuid(),
@@ -103,6 +109,7 @@ export const products = [
     offerPercentage: 5,
     isBestSeller: false,
     itemType: "cake",
+    delivery_time: 3,
   },
   {
     _id: uuid(),
@@ -117,6 +124,7 @@ export const products = [
     offerPercentage: 10,
     isBestSeller: false,
     itemType: "cake",
+    delivery_time: 2,
   },
   {
     _id: uuid(),
@@ -131,6 +139,7 @@ export const products = [
     offerPercentage: 5,
     isBestSeller: true,
     itemType: "cake",
+    delivery_time: 6,
   },
   {
     _id: uuid(),
@@ -144,6 +153,7 @@ export const products = [
     offerPercentage: 5,
     isBestSeller: false,
     itemType: "chocolates",
+    delivery_time: 6,
   },
   {
     _id: uuid(),
@@ -158,6 +168,7 @@ export const products = [
     offerPercentage: 2,
     isBestSeller: false,
     itemType: "cake",
+    delivery_time: 4,
   },
   {
     _id: uuid(),
@@ -172,6 +183,7 @@ export const products = [
     offerPercentage: 5,
     isBestSeller: true,
     itemType: "cake",
+    delivery_time: 3,
   },
   {
     _id: uuid(),
@@ -186,6 +198,7 @@ export const products = [
     offerPercentage: 5,
     isBestSeller: false,
     itemType: "cake",
+    delivery_time: 2,
   },
   {
     _id: uuid(),
@@ -200,6 +213,7 @@ export const products = [
     offerPercentage: 5,
     isBestSeller: false,
     itemType: "cake",
+    delivery_time: 6,
   },
   {
     _id: uuid(),
@@ -213,6 +227,7 @@ export const products = [
     offerPercentage: 5,
     isBestSeller: true,
     itemType: "chocolates",
+    delivery_time: 5,
   },
   {
     _id: uuid(),
@@ -227,6 +242,7 @@ export const products = [
     offerPercentage: 5,
     isBestSeller: false,
     itemType: "cake",
+    delivery_time: 4,
   },
   {
     _id: uuid(),
@@ -241,6 +257,7 @@ export const products = [
     offerPercentage: 5,
     isBestSeller: false,
     itemType: "cake",
+    delivery_time: 6,
   },
   {
     _id: uuid(),
@@ -255,6 +272,7 @@ export const products = [
     offerPercentage: 5,
     isBestSeller: false,
     itemType: "cake",
+    delivery_time: 1,
   },
   {
     _id: uuid(),
@@ -269,6 +287,7 @@ export const products = [
     offerPercentage: 5,
     isBestSeller: true,
     itemType: "cake",
+    delivery_time: 2,
   },
   {
     _id: uuid(),
@@ -283,6 +302,7 @@ export const products = [
     offerPercentage: 5,
     isBestSeller: false,
     itemType: "cake",
+    delivery_time: 2,
   },
   {
     _id: uuid(),
@@ -296,5 +316,6 @@ export const products = [
     offerPercentage: 15,
     isBestSeller: true,
     itemType: "chocolates",
+    delivery_time: 3,
   },
 ];

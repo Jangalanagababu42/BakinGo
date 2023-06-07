@@ -4,19 +4,21 @@ import React, { useContext, useState } from "react";
 import axios from "axios";
 import "./Login.css";
 import { AuthContext } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 
 function Login() {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const { LoginHandler } = useContext(AuthContext);
-
-  function handleLogData() {
+  const testData = {
+    email: "adarshbalika@gmail.com",
+    password: "adarshbalika",
+  };
+  function handleLogData(e) {
+    e.preventDefault();
     LoginHandler(loginData);
   }
-  function handleGuestLogData() {
-    setLoginData({
-      email: "adarshbalika@gmail.com",
-      password: "adarshbalika",
-    });
+  function handleGuestLogData(e, testData) {
+    LoginHandler(testData);
   }
 
   return (
@@ -26,7 +28,9 @@ function Login() {
           <h3>Login</h3>
           <div className="login-input">
             <label>
-              <b>Email Address</b>
+              <b>
+                Email Address <span style={{ color: "red" }}>*</span>
+              </b>
             </label>
             <input
               type="email"
@@ -34,12 +38,14 @@ function Login() {
               onChange={(e) =>
                 setLoginData((prev) => ({ ...prev, email: e.target.value }))
               }
-              required
+              required={true}
             ></input>
           </div>
           <div className="login-input">
             <label>
-              <b>Password</b>
+              <b>
+                Password<span style={{ color: "red" }}>*</span>
+              </b>
             </label>
             <input
               type="password"
@@ -47,7 +53,7 @@ function Login() {
               onChange={(e) =>
                 setLoginData((prev) => ({ ...prev, password: e.target.value }))
               }
-              required
+              required={true}
             ></input>
           </div>
           <div className="login-forgot-details">
@@ -59,26 +65,26 @@ function Login() {
           </div>
           <button
             className="card-button2 active-button"
-            onClick={() => {
-              handleLogData();
+            onClick={(e) => {
+              handleLogData(e);
             }}
           >
             Login
           </button>
           <button
             className="card-button2 active-button"
-            onClick={() => {
-              handleGuestLogData();
+            onClick={(e) => {
+              handleGuestLogData(e, testData);
             }}
           >
             Login as Guest
           </button>
-          <a href="/signup" className="create-new-account">
+          <Link to={"/signup"} className="create-new-account">
             Create New Account
             <i className="material-symbols-outlined">
               <FontAwesomeIcon icon={faChevronRight} />
             </i>
-          </a>
+          </Link>
         </div>
       </div>
     </>

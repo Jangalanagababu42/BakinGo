@@ -207,6 +207,7 @@ function Filter() {
               id="Black Forest"
               value="Black Forest"
               className="small-text"
+              checked={state.FlavourTypeCheckbox.includes("Black Forest")}
               onClick={(e) => {
                 handleFlavorType(e);
               }}
@@ -220,7 +221,7 @@ function Filter() {
               id="Butterscotch"
               className="small-text"
               value="Butterscotch"
-              checked={state.FlavourTypeCheckbox.Butterscotch}
+              checked={state.FlavourTypeCheckbox.includes("Butterscotch")}
               onClick={(e) => {
                 handleFlavorType(e);
               }}
@@ -234,6 +235,7 @@ function Filter() {
               id="Red Velvet"
               className="small-text"
               value="Red Velvet"
+              checked={state.FlavourTypeCheckbox.includes("Red Velvet")}
               onClick={(e) => {
                 handleFlavorType(e);
               }}
@@ -247,6 +249,7 @@ function Filter() {
               id="pineapple"
               className="small-text"
               value="pineapple"
+              checked={state.FlavourTypeCheckbox.includes("pineapple")}
               onClick={(e) => {
                 handleFlavorType(e);
               }}
@@ -260,6 +263,7 @@ function Filter() {
               id="Strawberry"
               className="small-text"
               value="Strawberry"
+              checked={state.FlavourTypeCheckbox.includes("Strawberry")}
               onClick={(e) => {
                 handleFlavorType(e);
               }}

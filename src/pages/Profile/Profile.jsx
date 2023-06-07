@@ -19,6 +19,9 @@ function Profile() {
           <NavLink to={"/profile/address"} className={toggelActive}>
             Address
           </NavLink>
+          <NavLink to={"/profile/orders"} className={toggelActive}>
+            Order History
+          </NavLink>
         </div>
         <div className="profile-details">
           <Outlet />

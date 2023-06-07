@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./ProductCard.css";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,19 +10,35 @@ import {
 import { ProductContext } from "../../context/ProductContext";
 import { ApiContext } from "../../context/ApiContext";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../context/AuthContext";
 
 function ProductCard() {
   const { filterProductsByStocks, getOriginalPrice } =
     useContext(ProductContext);
-  const { addProductsToCart, addProductsToWishlist, isinCart, isWishlisted } =
-    useContext(ApiContext);
+  const { authState } = useContext(AuthContext);
+  const {
+    addProductsToCart,
+    addProductsToWishlist,
+    isinCart,
+    isWishlisted,
+    toggleWishlist,
+  } = useContext(ApiContext);
+  const [wishlistLoader, setWishlistLoader] = useState(false);
+  const [cartLoader, setCartLoader] = useState(false);
+
   const navigate = useNavigate();
 
   return (
     <div className="product-cards">
       {filterProductsByStocks.map((product) => (
         <div className="card-default-product">
-          <Link to={`/product/${product.id}`} className="no-link-decoration">
+          <Link
+            to={`/product/${product.id}`}
+            className="no-link-decoration"
+            onClick={(e) => {
+              if (wishlistLoader || cartLoader) e.preventDefault();
+            }}
+          >
             <div className="card-img-icon-container">
               <div className="card-img-container">
                 <img
@@ -43,9 +59,7 @@ function ProductCard() {
                     : "wishlist-icon"
                 } `}
                 size="2xl"
-                onClick={() => {
-                  addProductsToWishlist(product);
-                }}
+                onClick={(e) => toggleWishlist(e, product, setWishlistLoader)}
               />
             </div>
             <div className="card-header">{product.title}</div>
@@ -73,8 +87,8 @@ function ProductCard() {
               <button
                 className="btn btn-outline-primary card-button"
                 style={{ border: "2px solid" }}
-                onClick={() => {
-                  addProductsToCart(product);
+                onClick={(e) => {
+                  addProductsToCart(e, product, setCartLoader);
                   toast.success("Added To Cart");
                 }}
               >

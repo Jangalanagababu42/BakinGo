@@ -13,10 +13,13 @@ import {
   deleteProductFromWishlistService,
   getWishlistProductsService,
 } from "../services/WishlistService";
+import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 export const ApiContext = createContext("");
 
 export default function ApiProvider({ children }) {
+  const navigate = useNavigate();
   const { authState } = useContext(AuthContext);
   const initialProductState = {
     cart: [],
@@ -33,6 +36,7 @@ export default function ApiProvider({ children }) {
         state: "Telangana",
       },
     ],
+    orderList: [],
   };
   const [productState, productDispatch] = useReducer(
     productReducer,
@@ -66,40 +70,84 @@ export default function ApiProvider({ children }) {
     authState?.token && getWishlistProducts();
   }, [productDispatch, authState.token]);
 
-  const addProductsToCart = async (product) => {
+  const addProductsToCart = async (e, product, setDisable) => {
+    e.preventDefault();
+    setDisable(true);
     console.log(product, "product");
     try {
-      const response = await addProductsInCartService(
-        authState?.token,
-        product
-      );
-      console.log(response, "response");
-      productDispatch({
-        type: "CART_OPERATION",
-        payload: response.data.cart,
-      });
+      if (!authState?.token) {
+        navigate("/login");
+        toast.info("Please Login");
+      } else {
+        const response = await addProductsInCartService(
+          authState?.token,
+          product
+        );
+        toast.info("Added to Cart");
+        console.log(response, "response");
+        productDispatch({
+          type: "CART_OPERATION",
+          payload: response.data.cart,
+        });
+      }
     } catch (error) {
       console.log(error);
     }
   };
-  const addProductsToWishlist = async (product) => {
+  const toggleWishlist = async (e, product, setDisable) => {
+    e.preventDefault();
+    setDisable(true);
+    try {
+      if (!authState?.token) navigate("/login");
+      else {
+        // const response = isWishlisted(product)
+        //   ? await deleteProductsFromWishlist(product._id)
+        //   : await addProductsToWishlist(product);
+        const response = isWishlisted(product)
+          ? await deleteProductFromWishlistService(
+              authState?.token,
+              product._id
+            )
+          : await addProductsInWishlistService(authState?.token, product);
+
+        productDispatch({
+          type: "WISHLIST_OPERATION",
+          payload: response.data.wishlist,
+        });
+      }
+    } catch (e) {
+    } finally {
+      setDisable(false);
+    }
+  };
+  const addProductsToWishlist = async (e, product, setDisable) => {
+    e.preventDefault();
+    setDisable(true);
     console.log(product, "product");
     try {
-      const response = await addProductsInWishlistService(
-        authState?.token,
-        product
-      );
-      console.log(response, "response");
-      productDispatch({
-        type: "WISHLIST_OPERATION",
-        payload: response.data.wishlist,
-      });
+      if (!authState?.token) {
+        navigate("/login");
+        toast.info("Please Login ");
+      } else {
+        const response = await addProductsInWishlistService(
+          authState?.token,
+          product
+        );
+        console.log(response, "response");
+        toast.success("Added To Wishlist");
+        productDispatch({
+          type: "WISHLIST_OPERATION",
+          payload: response.data.wishlist,
+        });
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const deleteProductsFromCart = async (productId) => {
+  const deleteProductsFromCart = async (e, productId, setDisable) => {
+    e.preventDefault();
+    setDisable(true);
     try {
       const response = await deleteProductFromCartService(
         authState?.token,
@@ -110,11 +158,14 @@ export default function ApiProvider({ children }) {
         type: "CART_OPERATION",
         payload: response.data.cart,
       });
+      toast.success("Removed From Cart");
     } catch (error) {
       console.log(error);
     }
   };
-  const deleteProductsFromWishlist = async (productId) => {
+  const deleteProductsFromWishlist = async (e, productId, setDisable) => {
+    e.preventDefault();
+    setDisable(true);
     try {
       const response = await deleteProductFromWishlistService(
         authState?.token,
@@ -125,12 +176,15 @@ export default function ApiProvider({ children }) {
         type: "WISHLIST_OPERATION",
         payload: response.data.wishlist,
       });
+      toast.success("Removed From Wishlist");
     } catch (error) {
       console.log(error);
     }
   };
 
-  const updateProductQuantityInCart = async (type, product) => {
+  const updateProductQuantityInCart = async (e, type, product, setDisable) => {
+    e.preventDefault();
+    setDisable(true);
     console.log(type);
     try {
       let response;
@@ -140,18 +194,21 @@ export default function ApiProvider({ children }) {
           type,
           product._id
         );
+        toast.info("Product quantity Increased");
       } else {
         if (product.qty === 1) {
           response = await deleteProductFromCartService(
             authState?.token,
             product._id
           );
+          toast.info("Removed From Cart");
         } else {
           response = await updateProductQuantityInCartService(
             authState?.token,
             type,
             product._id
           );
+          toast.success("Product quantity Decreased");
         }
       }
       productDispatch({
@@ -164,9 +221,12 @@ export default function ApiProvider({ children }) {
   };
 
   const isinCart = (product) => {
-    let filteredProduct = productState.cart.filter(
-      (cartProduct) => cartProduct.id === product.id
-    );
+    console.log(product, "productincart");
+    let filteredProduct =
+      productState.cart.length > 0 &&
+      productState.cart.filter(
+        (cartProduct) => cartProduct._id === product._id
+      );
     if (filteredProduct.length > 0) {
       return true;
     } else {
@@ -174,9 +234,11 @@ export default function ApiProvider({ children }) {
     }
   };
   const isWishlisted = (product) => {
-    let filteredProduct = productState.wishlist.filter(
-      (wishlistProduct) => wishlistProduct.id === product.id
-    );
+    let filteredProduct =
+      productState.wishlist.length > 0 &&
+      productState.wishlist.filter(
+        (wishlistProduct) => wishlistProduct._id === product._id
+      );
     if (filteredProduct.length > 0) {
       return true;
     } else {
@@ -195,6 +257,7 @@ export default function ApiProvider({ children }) {
         deleteProductsFromWishlist,
         isinCart,
         isWishlisted,
+        toggleWishlist,
       }}
     >
       {children}

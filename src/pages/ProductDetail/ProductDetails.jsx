@@ -8,18 +8,24 @@ import {
   faTruckFast,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./ProductDetails.css";
 import { ProductContext } from "../../context/ProductContext";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ApiContext } from "../../context/ApiContext";
+import { toast } from "react-toastify";
 
 function ProductDetails() {
-  const { renderedProducts } = useContext(ProductContext);
-  const { addProductsToCart, addProductsToWishlist } = useContext(ApiContext);
+  const navigate = useNavigate();
+  const { renderedProducts, getOriginalPrice } = useContext(ProductContext);
+  const { addProductsToCart, addProductsToWishlist, isinCart, isWishlisted } =
+    useContext(ApiContext);
+
   console.log(renderedProducts);
   const { productId } = useParams();
   console.log(productId, "pid");
+  const [wishlistLoader, setWishlistLoader] = useState(false);
+  const [cartLoader, setCartLoader] = useState(false);
   const item = renderedProducts
     ? renderedProducts.find(
         (product) => Number(product.id) === Number(productId)
@@ -49,7 +55,7 @@ function ProductDetails() {
                 <span>{item.price}</span>
                 <span className="strikethrough card-title">
                   <FontAwesomeIcon icon={faIndianRupeeSign} />
-                  780
+                  {getOriginalPrice(item.price, item.offerPercentage)}
                 </span>
                 <span className="card-title offer">
                   {item.offerPercentage}% OFF
@@ -58,22 +64,44 @@ function ProductDetails() {
               <div className="color-success">Inclusive of all taxes</div>
             </div>
             <div className="product-buttons">
-              <button
-                className="btn btn-primary product-btn"
-                onClick={() => {
-                  addProductsToCart(item);
-                }}
-              >
-                ADD TO CART
-              </button>
-              <button
-                className="btn product-btn btn-outline-default"
-                onClick={() => {
-                  addProductsToWishlist(item);
-                }}
-              >
-                WISHLIST
-              </button>
+              {!isinCart(item) ? (
+                <button
+                  className="btn btn-primary product-btn"
+                  onClick={(e) => {
+                    addProductsToCart(e, item, setCartLoader);
+                  }}
+                >
+                  ADD TO CART
+                </button>
+              ) : (
+                <button
+                  className="btn btn-primary product-btn"
+                  onClick={() => {
+                    navigate("/cart");
+                  }}
+                >
+                  Go To Cart
+                </button>
+              )}
+              {!isWishlisted(item) ? (
+                <button
+                  className="btn product-btn btn-outline-default"
+                  onClick={(e) => {
+                    addProductsToWishlist(e, item, setWishlistLoader);
+                  }}
+                >
+                  ADD TO WISHLIST
+                </button>
+              ) : (
+                <button
+                  className="btn product-btn btn-outline-default"
+                  onClick={() => {
+                    navigate("/wishlist");
+                  }}
+                >
+                  WISHLISTED
+                </button>
+              )}
             </div>
             <div className="additional-details padding-bottom-5 border-bottom">
               <div className="margin-2">

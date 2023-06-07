@@ -1,33 +1,65 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { ApiContext } from "../../context/ApiContext";
 import CartPriceTable from "./CartPriceTable";
 import AddressForm from "../Profile/Address/AddressForm/AddressForm";
-
+import { ProductContext } from "../../context/ProductContext";
+import { useNavigate } from "react-router";
+import { v4 as uuid } from "uuid";
 function Checkout() {
   const {
     productState: { addressList, cart },
+    productDispatch,
     deleteProductsFromCart,
   } = useContext(ApiContext);
-
+  const { getTotalPrice } = useContext(ProductContext);
   const [addAddress, setAddAddress] = useState(false);
   const [address, setAddress] = useState(null);
   const [orderPlaced, setOrderPlaced] = useState(false);
-
-  const clearTotalCart = () => {
+  const [finalPrice, setFinalPrice] = useState(0);
+  const navigate = useNavigate();
+  const [disable, setDisable] = useState(false);
+  const clearTotalCart = (e) => {
     // let errr=null;
     cart.forEach((item) => {
       //   clearTotalCart(item, authState?.token);
-      deleteProductsFromCart(item._id);
+      deleteProductsFromCart(e, item._id, setDisable);
     });
   };
 
   const placeOrderHandler = (e) => {
     e.preventDefault();
-    setOrderPlaced(true);
-    clearTotalCart();
-    toast.success("Order Placed");
+    if (address) {
+      setOrderPlaced(true);
+      clearTotalCart(e);
+      toast.success("Order Placed");
+      setFinalPrice(getTotalPrice(cart));
+    } else {
+      toast.info("Please Select Address");
+    }
   };
+
+  useEffect(() => {
+    let id = null;
+    if (orderPlaced) {
+      productDispatch({
+        type: "ADD_ORDER_DETAILS",
+        payload: {
+          order: {
+            id: `rzr_puy_${uuid()}`,
+            cart: cart,
+            address: address,
+            amount: finalPrice,
+            date: new Date(),
+          },
+        },
+      });
+      id = setTimeout(() => {
+        navigate("/profile/orders");
+      }, 3000);
+    }
+  }, [orderPlaced]);
+
   return (
     <>
       {!orderPlaced ? (

@@ -4,6 +4,7 @@ import React, { useContext, useState } from "react";
 import axios from "axios";
 import "./Signup.css";
 import { AuthContext } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 
 function Signup() {
   const { signupHandler } = useContext(AuthContext);
@@ -15,7 +16,8 @@ function Signup() {
     lastname: "",
   });
 
-  function handleSignup() {
+  function handleSignup(e) {
+    e.preventDefault();
     signupHandler(userSignUpDetails);
   }
 
@@ -26,7 +28,9 @@ function Signup() {
           <h3>Signup</h3>
           <div className="signup-input">
             <label>
-              <b>FirstName</b>
+              <b>
+                FirstName<span style={{ color: "red" }}>*</span>
+              </b>
             </label>
             <input
               type="text"
@@ -38,12 +42,14 @@ function Signup() {
                   firstName: e.target.value,
                 });
               }}
-              required
+              required={true}
             ></input>
           </div>
           <div className="signup-input">
             <label>
-              <b>lastName</b>
+              <b>
+                lastName<span style={{ color: "red" }}>*</span>
+              </b>
             </label>
             <input
               type="text"
@@ -55,12 +61,14 @@ function Signup() {
                   lastname: e.target.value,
                 });
               }}
-              required
+              required={true}
             ></input>
           </div>
           <div className="signup-input">
             <label>
-              <b>Email Address</b>
+              <b>
+                Email Address<span style={{ color: "red" }}>*</span>
+              </b>
             </label>
             <input
               type="email"
@@ -72,12 +80,14 @@ function Signup() {
                   email: e.target.value,
                 });
               }}
-              required
+              required={true}
             ></input>
           </div>
           <div className="signup-input">
             <label>
-              <b>Password</b>
+              <b>
+                Password<span style={{ color: "red" }}>*</span>
+              </b>
             </label>
             <input
               type="password"
@@ -89,7 +99,7 @@ function Signup() {
                   password: e.target.value,
                 });
               }}
-              required
+              required={true}
             ></input>
           </div>
           <div className="signup-forgot-details">
@@ -100,18 +110,18 @@ function Signup() {
           </div>
           <button
             className="card-button2 active-button"
-            onClick={() => {
-              handleSignup();
+            onClick={(e) => {
+              handleSignup(e);
             }}
           >
             Signup
           </button>
-          <a href="/login" className="create-new-account">
+          <Link to="/login" className="create-new-account">
             Already have an account
             <i className="material-symbols-outlined">
               <FontAwesomeIcon icon={faChevronRight} />
             </i>
-          </a>
+          </Link>
         </div>
       </div>
     </>

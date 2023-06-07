@@ -11,12 +11,14 @@ import "./Header.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ProductContext } from "../../context/ProductContext";
 import { ApiContext } from "../../context/ApiContext";
+import { AuthContext } from "../../context/AuthContext";
 
 function Header() {
   const { setInput, handleSearchInput } = useContext(ProductContext);
   const {
     productState: { cart, wishlist },
   } = useContext(ApiContext);
+  const { authState } = useContext(AuthContext);
   const navigate = useNavigate();
   return (
     <nav>

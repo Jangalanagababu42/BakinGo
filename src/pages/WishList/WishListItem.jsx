@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ApiContext } from "../../context/ApiContext";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,81 +15,87 @@ function WishlistItem() {
   } = useContext(ApiContext);
   const { getOriginalPrice } = useContext(ProductContext);
   const navigate = useNavigate();
-
+  const [disable, setDisable] = useState(false);
   return (
     <div>
       <div className="flex-row-center">
-        {wishlist.reverse().map((product) => (
-          <Link
-            to={`/product/${product.id}`}
-            key={product.id}
-            className="no-link-decoration"
-          >
-            <div className="card card-default wishlist-card" key={product.id}>
-              <div className="card-img-container wishlist-img-container">
-                <img
-                  src={product.imageUrl}
-                  alt="cake"
-                  className="card-img"
-                  loading="lazy"
-                />
-                <FontAwesomeIcon
-                  icon={faCircleXmark}
-                  className="wishlist-close-btn gray-text"
-                  onClick={() => {
-                    deleteProductsFromWishlist(product._id);
-                  }}
-                ></FontAwesomeIcon>
-              </div>
-              <div className="card-header">{product.title}</div>
-              <div className="card-title">
-                ₹ {product.price}
-                {product.offerPercentage > 0 && (
-                  <>
-                    <span className="strikethrough card-title">
-                      {getOriginalPrice(product.price, product.offerPercentage)}
-                    </span>
-                    <span className="card-title offer">
-                      ({product.offerPercentage}% OFF){" "}
-                    </span>
-                  </>
-                )}
-              </div>
-              <div className="wishlist-card-buttons">
-                {!product.isOutOfStock ? (
-                  !isinCart(product) ? (
-                    <button
-                      className="btn btn-outline-primary wishlist-card-button card-button"
-                      onClick={() => {
-                        addProductsToCart(product);
-                      }}
-                      // disabled={disable}
-                    >
-                      ADD TO CART
-                    </button>
+        {wishlist.length > 0 &&
+          wishlist.reverse().map((product) => (
+            <Link
+              to={`/product/${product.id}`}
+              key={product.id}
+              className="no-link-decoration"
+            >
+              <div className="card card-default wishlist-card" key={product.id}>
+                <div className="card-img-container wishlist-img-container">
+                  <img
+                    src={product.imageUrl}
+                    alt="cake"
+                    className="card-img"
+                    loading="lazy"
+                  />
+                  <FontAwesomeIcon
+                    icon={faCircleXmark}
+                    className="wishlist-close-btn gray-text"
+                    onClick={(e) => {
+                      deleteProductsFromWishlist(e, product._id, setDisable);
+                    }}
+                  ></FontAwesomeIcon>
+                </div>
+                <div className="card-header">{product.title}</div>
+                <div className="card-title">
+                  ₹ {product.price}
+                  {product.offerPercentage > 0 && (
+                    <>
+                      <span className="strikethrough card-title">
+                        {getOriginalPrice(
+                          product.price,
+                          product.offerPercentage
+                        )}
+                      </span>
+                      <span className="card-title offer">
+                        ({product.offerPercentage}% OFF){" "}
+                      </span>
+                    </>
+                  )}
+                </div>
+                <div className="wishlist-card-buttons">
+                  {!product.isOutOfStock ? (
+                    !isinCart(product) ? (
+                      <button
+                        className="btn btn-outline-primary wishlist-card-button card-button"
+                        onClick={(e) => {
+                          addProductsToCart(e, product, setDisable);
+                        }}
+                        // disabled={disable}
+                      >
+                        ADD TO CART
+                      </button>
+                    ) : (
+                      <button
+                        className="btn cart-button-product card-button"
+                        style={{ border: "2px solid" }}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setDisable(true);
+                          navigate("/cart");
+                        }}
+                      >
+                        Go To Cart
+                      </button>
+                    )
                   ) : (
                     <button
-                      className="btn cart-button-product card-button"
-                      style={{ border: "2px solid" }}
-                      onClick={() => {
-                        navigate("/cart");
-                      }}
+                      className="btn btn-outline-primary wishlist-card-button"
+                      disabled
                     >
-                      Go To Cart
+                      OUT OF STOCK
                     </button>
-                  )
-                ) : (
-                  <button
-                    className="btn btn-outline-primary wishlist-card-button"
-                    disabled
-                  >
-                    OUT OF STOCK
-                  </button>
-                )}
+                  )}
+                </div>
               </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))}
       </div>
       {wishlist.length === 0 && (
         <div className="wishlist-empty-container flex-column-center">

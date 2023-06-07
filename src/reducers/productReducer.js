@@ -24,13 +24,18 @@ export const productReducer = (productState, action) => {
         }),
       };
     case "DELETE_ADDRESS":
+      console.log(action.payload);
       return {
         ...productState,
         addressList: productState.addressList.filter(
           (address) => address.id !== action.payload.id
         ),
       };
-
+    case "ADD_ORDER_DETAILS":
+      return {
+        ...productState,
+        orderList: productState.orderList.concat(action.payload.order),
+      };
     default:
       return productState;
   }
