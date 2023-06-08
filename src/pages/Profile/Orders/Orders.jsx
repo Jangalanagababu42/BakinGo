@@ -77,6 +77,7 @@ function Orders() {
                               src={item.imageUrl}
                               alt="card"
                               onClick={() => navigate(`/product/${item.id}`)}
+                              loading="lazy"
                             />
                           </div>
                           <div className="card-content">

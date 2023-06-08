@@ -66,6 +66,7 @@ export default function Home() {
               src={cake_hero}
               alt="hero-img"
               style={{ height: "300px", width: "300px", borderRadius: "50%" }}
+              loading="lazy"
             />
           </div>
         </div>
@@ -81,7 +82,12 @@ export default function Home() {
             >
               <div className="card card-default zoom">
                 <div className="card-img-container">
-                  <img className="card-img" src={product.imageUrl} alt="cake" />
+                  <img
+                    className="card-img"
+                    src={product.imageUrl}
+                    alt="cake"
+                    loading="lazy"
+                  />
                 </div>
                 <div className="card-header">{product.title}</div>
                 <div className="card-title">₹ {product.price}</div>
