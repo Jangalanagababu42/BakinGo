@@ -6,8 +6,8 @@ function ErrorPage() {
     <div class="page">
       <div class="page__info">
         <h1 class="page__title">
-          <img src={logo} alt="logo" />
-          {/* <span class="page__mistake-code">404</span> */}
+          <img src={logo} alt="logo" loading="lazy" />
+
           <span class="page__mistake-text">PAGE / WEBSITE NOT FOUND !!</span>
         </h1>
       </div>
