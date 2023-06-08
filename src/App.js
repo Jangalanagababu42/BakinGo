@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import "./App.css";
@@ -19,6 +19,7 @@ import Details from "./pages/Profile/Details/Details.jsx";
 import Address from "./pages/Profile/Address/Address.jsx";
 import Checkout from "./pages/Cart/Checkout";
 import Orders from "./pages/Profile/Orders/Orders";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
       <ToastContainer position="bottom-right" autoClose={800} draggable />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/404" element={<ErrorPage />} />
+        <Route path="*" element={<Navigate to={"/404"} />} />
         <Route path="/mockman" element={<MockAPI />} />
         <Route
           path="/cart"

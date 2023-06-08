@@ -1,0 +1,51 @@
+.page {
+  box-sizing: border-box;
+  padding: 2rem 0.5rem;
+  position: relative;
+  margin-inline: auto;
+  block-size: max(670px, 100vh);
+}
+
+.page__info {
+  box-sizing: border-box;
+  max-inline-size: 60ch;
+  padding-inline: 1rem;
+}
+
+.page__title {
+  margin-block: 0;
+}
+
+.page__mistake-code {
+  display: block;
+  font-family: "Baloo Tammudu", cursive;
+  font-size: 4rem;
+  line-height: 1.15;
+}
+
+.page__mistake-text {
+  display: block;
+  font-size: 1.5rem;
+  line-height: 1.25;
+}
+
+.page > p:first-child {
+  margin-block-start: 0;
+}
+
+.page > p:last-child {
+  margin-block-end: 0;
+}
+
+@media (max-width: 750px) {
+  .page__second-flask {
+    display: none;
+  }
+}
+
+@media (min-width: 751px) {
+  .page__info {
+    margin-inline: auto;
+    text-align: center;
+  }
+}
